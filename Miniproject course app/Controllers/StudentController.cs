@@ -50,6 +50,17 @@ namespace Miniproject_course_app.Controllers
                 goto Name;
             }
 
+            if (_groupService.GetAll().FirstOrDefault(m => m.Name.ToLower() == name.ToLower().Trim()) != null)
+            {
+                Console.WriteLine("Group already exists ");
+                goto Name;
+            }
+
+            if (name.Length < 3)
+            {
+                ConsoleColor.Red.WriteConsole(" Name must not be less than three letters ");
+                goto Name;
+            }
 
 
             ConsoleColor.Magenta.WriteConsole("Add surname: ");
@@ -60,6 +71,27 @@ namespace Miniproject_course_app.Controllers
                 ConsoleColor.Red.WriteConsole("Input can't be empty ");
                 goto Surname;
             }
+
+
+            if (!Regex.IsMatch(surname, @"^[\p{L}\p{M}' \.\-]+$"))
+            {
+                ConsoleColor.Red.WriteConsole("Format is wrong");  
+                goto Surname;
+            }
+
+            if (_groupService.GetAll().FirstOrDefault(m => m.Name.ToLower() == name.ToLower().Trim()) != null)
+            {
+                Console.WriteLine("Group already exists ");
+                goto Surname;
+            }
+
+            if (surname.Length < 3)
+            {
+                ConsoleColor.Red.WriteConsole(" Name must not be less than three letters ");
+                goto Name;
+            }
+
+
 
             ConsoleColor.Magenta.WriteConsole("Add age: ");
         age: string ageStr = Console.ReadLine();
@@ -76,8 +108,8 @@ namespace Miniproject_course_app.Controllers
             if (isCorrectAgeFormat)
             {
 
-                ConsoleColor.Magenta.WriteConsole("Add group: ");
-            IdStr: string idStr = Console.ReadLine();
+                 ConsoleColor.Magenta.WriteConsole("Add id : ");
+              IdStr: string idStr = Console.ReadLine();
 
                 int id;
                 bool isCorrectIdFormat = int.TryParse(idStr, out id);
@@ -172,9 +204,9 @@ namespace Miniproject_course_app.Controllers
             if (isCorrectIdFormat)
             {
                 var result = _studentService.GetAllByAge(age);
-                if (result == null)
+                if (result.Count==0)
                 {
-                    ConsoleColor.Red.WriteConsole("Data notfaund");
+                    ConsoleColor.Red.WriteConsole("Data not found");
 
                 }
                 else
@@ -191,6 +223,10 @@ namespace Miniproject_course_app.Controllers
                 }
 
 
+            }
+            else 
+            {
+                ConsoleColor.Red.WriteConsole("format is wrong");
             }
 
 
@@ -235,7 +271,7 @@ namespace Miniproject_course_app.Controllers
                 }
                 catch (Exception)
                 {
-                    ConsoleColor.Red.WriteConsole(" Group /*id*/ notfound ");
+                    ConsoleColor.Red.WriteConsole(" Group id notfound , please corect group id ");
                     goto Id;
                 }
 

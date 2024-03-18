@@ -120,9 +120,9 @@ static void GetMenues()
         " 1. Group create                     9. Student Create\n" +
         " 2. Group delete                    10. Student delete\n" +
         " 3. Get all Groups                  11. Get all Students\n" +
-        " 4. Get all by room groups          12. Get by ages Students\n" +
+        " 4. Get all by room groups          12. Get all by ages Students\n" +
         " 5. Get all by teacher groups       13. Get all by student group id\n" +
-        " 6. Get group by id                 14. Get all students by id\n" +
+        " 6. Get all group by id             14. Get all students by id\n" +
         " 7. Search by name groups           15. Search name or surname students\n" +
         " 8. Group Update                    16.Student Update");
  

@@ -5,7 +5,7 @@ using Service.Helpers.Extensions;
 using Service.Services;
 using Service.Services.Interfaces;
 using System.Linq.Expressions;
-using System.Text.RegularExpressions;
+
 
 namespace Miniproject_course_app.Controllers
 {
@@ -35,6 +35,12 @@ namespace Miniproject_course_app.Controllers
                 goto Name;
             }
 
+
+            if (name.Length < 3)
+            {
+                ConsoleColor.Red.WriteConsole(" Name must not be less than three letters ");
+                goto Name;
+            }
 
 
             ConsoleColor.Cyan.WriteConsole("Add teacher: ");
@@ -232,7 +238,7 @@ namespace Miniproject_course_app.Controllers
             }
             catch (Exception )
             {
-                ConsoleColor.Red.WriteConsole(" Id notfound ");
+                ConsoleColor.Red.WriteConsole(" Id notfound, please correct Id ");
             }
         }
 
@@ -249,7 +255,8 @@ namespace Miniproject_course_app.Controllers
             try
             {
 
-                List<Domain.Models.Group> response = _groupService.SearchByName(searchText);
+                List<Group> response = _groupService.SearchByName(searchText);
+
                 if (response.Count == 0)
                 {
                     ConsoleColor.Red.WriteConsole(" Name notfaound ");

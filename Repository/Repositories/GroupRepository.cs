@@ -20,7 +20,7 @@ namespace Repository.Repositories
 
         public List<Group> SearchByName(string searchText)
         {
-            return AppDbContent<Group>.datas.Where(m=> m.Name == searchText).ToList();
+            return AppDbContent<Group>.datas.Where(m=> m.Name.ToLower().Trim().Contains(searchText.ToLower().Trim())).ToList();
 
         }
 
