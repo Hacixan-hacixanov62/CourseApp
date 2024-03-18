@@ -240,7 +240,7 @@ namespace Miniproject_course_app.Controllers
         {
 
             ConsoleColor.Cyan.WriteConsole("Add name: ");
-        Name: string searchText = Console.ReadLine();
+          Name: string searchText = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(searchText))
             {
                 ConsoleColor.Red.WriteConsole("Input can't be empty ");

@@ -36,7 +36,7 @@ namespace Service.Services
             _studentRepository.Delete(student);
         }
 
-        public List<Student> GetAll()
+        public List<Student> GetAllWithExpression()
         {
             return _studentRepository.GetAll();
         }
@@ -46,6 +46,10 @@ namespace Service.Services
             return _studentRepository.GetAllByAge(age);
         }
 
+        public List<Student> GetAllWithExpression(Func<Student, bool> predicate)
+        {
+            return _studentRepository.GetAllWithExpression(predicate);
+        }
 
         public List<Student> GetAllByGroupId(int id)
         {

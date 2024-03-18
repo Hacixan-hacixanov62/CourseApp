@@ -23,20 +23,20 @@ namespace Miniproject_course_app.Controllers
 
 
         }
-        
-       
+
+
         public void Create()
         {
 
-            if( _groupService.GetAll().Count == 0)
+            if (_groupService.GetAll().Count == 0)
             {
-              
+
                 ConsoleColor.Red.WriteConsole("First Create group ");
                 return;
-            }            
+            }
 
             ConsoleColor.Magenta.WriteConsole("Add name: ");
-         Name: string name = Console.ReadLine();
+        Name: string name = Console.ReadLine();
 
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -44,8 +44,8 @@ namespace Miniproject_course_app.Controllers
                 goto Name;
             }
 
-            if(!Regex.IsMatch(name, @"^[\p{L}\p{M}' \.\-]+$"))
-            { 
+            if (!Regex.IsMatch(name, @"^[\p{L}\p{M}' \.\-]+$"))
+            {
                 ConsoleColor.Red.WriteConsole("Format is wrong");
                 goto Name;
             }
@@ -53,7 +53,7 @@ namespace Miniproject_course_app.Controllers
 
 
             ConsoleColor.Magenta.WriteConsole("Add surname: ");
-         Surname : string surname = Console.ReadLine();
+        Surname: string surname = Console.ReadLine();
 
             if (string.IsNullOrWhiteSpace(surname))
             {
@@ -62,8 +62,8 @@ namespace Miniproject_course_app.Controllers
             }
 
             ConsoleColor.Magenta.WriteConsole("Add age: ");
-         age  : string ageStr = Console.ReadLine();   
-            
+        age: string ageStr = Console.ReadLine();
+
             int age;
             bool isCorrectAgeFormat = int.TryParse(ageStr, out age);
 
@@ -72,7 +72,7 @@ namespace Miniproject_course_app.Controllers
             {
 
                 ConsoleColor.Magenta.WriteConsole("Add group: ");
-                IdStr :  string idStr = Console.ReadLine();
+            IdStr: string idStr = Console.ReadLine();
 
                 int id;
                 bool isCorrectIdFormat = int.TryParse(idStr, out id);
@@ -83,8 +83,8 @@ namespace Miniproject_course_app.Controllers
                     try
                     {
 
-                       var response=  _groupService.GetById(id);
-                      
+                        var response = _groupService.GetById(id);
+
                         _studentService.Create(new Student { Name = name, Surname = surname, Age = age, Group = response });
 
                         ConsoleColor.Green.WriteConsole("Data successfully added");
@@ -115,7 +115,7 @@ namespace Miniproject_course_app.Controllers
         {
 
 
-            var response = _studentService.GetAll();
+            var response = _studentService.GetAllWithExpression();
 
             foreach (var item in response)
             {
@@ -158,48 +158,48 @@ namespace Miniproject_course_app.Controllers
         public void GetAllByAge()
         {
             ConsoleColor.Cyan.WriteConsole("Add Age: ");
-          Age: string ageStr = Console.ReadLine();
+        Age: string ageStr = Console.ReadLine();
             int age;
 
             bool isCorrectIdFormat = int.TryParse(ageStr, out age);
 
             if (isCorrectIdFormat)
             {
-                var result =_studentService.GetAllByAge(age);
+                var result = _studentService.GetAllByAge(age);
                 if (result == null)
                 {
                     ConsoleColor.Red.WriteConsole("Data notfaund");
-                    
+
                 }
                 else
                 {
-                   foreach (var item in result)
-                   {
+                    foreach (var item in result)
+                    {
                         string data = $"Id: {item.Id}, Student name : {item.Name}, Student surname : {item.Surname}, Student age : {item.Age}" +
                             $" Student Group id : {item.Group.Id} ";
 
                         Console.WriteLine(data);
 
-                   }
+                    }
 
                 }
 
 
             }
-                
 
-              
+
+
         }
 
         public void GetAllByGroupId()
         {
             ConsoleColor.Cyan.WriteConsole("Add group id: ");
-        Id: string idStr= Console.ReadLine();
-      
+        Id: string idStr = Console.ReadLine();
+
             int id;
 
             bool isCorrectIdFormat = int.TryParse(idStr, out id);
-         
+
 
             if (string.IsNullOrWhiteSpace(idStr))
             {
@@ -232,10 +232,10 @@ namespace Miniproject_course_app.Controllers
                     ConsoleColor.Red.WriteConsole(" Group id notfound ");
                     goto Id;
                 }
-            
+
             }
 
-           
+
         }
 
         public void GetById()
@@ -271,9 +271,45 @@ namespace Miniproject_course_app.Controllers
             }
         }
 
-       
-        
-    }
-
     
+
+        public void SearchByNameOrSurname()
+        {
+        SearchByNameOrSurname: ConsoleColor.Cyan.WriteConsole("Add search text: ");
+
+        Name: string searchText = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty ");
+                goto SearchByNameOrSurname;
+            }
+            try
+            {
+                var response = _studentService.GetAllWithExpression(m => m.Name.ToLower().Trim().Contains(searchText.ToLower().Trim()) || m.Surname.ToLower().Trim().Contains(searchText.ToLower().Trim()));
+
+
+                if (response.Count == 0)
+                {
+                    ConsoleColor.Red.WriteConsole(" Name notfaound ");
+                }
+
+                foreach (var item in response)
+                {
+                    string data = $"Id: {item.Id}, Student name : {item.Name}, Student surname : {item.Surname}, Student age : {item.Age}";
+                    Console.WriteLine(data);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ConsoleColor.Red.WriteConsole(ex.Message);
+                goto SearchByNameOrSurname;
+            }
+
+
+
+
+
+    }
+    }
 }
