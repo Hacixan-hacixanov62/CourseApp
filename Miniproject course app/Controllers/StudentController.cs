@@ -29,7 +29,7 @@ namespace Miniproject_course_app.Controllers
 
             if( _groupService.GetAll().Count == 0)
             {
-
+                //Console.WriteLine("salam");
                 ConsoleColor.Red.WriteConsole("First Create group ");
                 return;
             }            
