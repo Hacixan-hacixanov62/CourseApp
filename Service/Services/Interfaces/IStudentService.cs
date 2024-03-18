@@ -12,6 +12,7 @@ namespace Service.Services.Interfaces
         void Update(Student data);
         void Delete(int? id);
         Student GetById(int? id);
+        List<Student> GetAll();
         List<Student> GetAllWithExpression(Func<Student, bool> predicate);
         List<Student> GetAllByAge(int age);
         List<Student> SearchByNameOrSurname(string searchText);

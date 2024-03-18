@@ -82,6 +82,16 @@ Operation: string operationStr = Console.ReadLine();
                 studentController.GetById();
                 break;
 
+
+            case (int)OperationType.SearchByNameOrSurnameStudents:
+                studentController.SearchByNameOrSurname();
+                break;
+
+            case (int)OperationType.StudentUpdate:
+                studentController.Update();
+                break;
+
+
             default:
                 ConsoleColor.Red.WriteConsole("Operation is wrong, please choose again");
                 goto Operation;
@@ -103,11 +113,20 @@ Operation: string operationStr = Console.ReadLine();
 static void GetMenues()
 {
 
-    ConsoleColor.Cyan.WriteConsole("Chose one operation :  \n 1-Group create\n 2-Group delete\n 3-Get all Groups,4-Get all by room groups, 5- Get all by teacher groups," +
-        " 6-Get group by id, 7-Search by name groups, 8-Group Update, 9-Student Create, 10-Get all Students, 11-Student delete, 12-Get by" +
-        "ages Students, 13-Get all by group id, 14-Get students by id ");
-}
+    ConsoleColor.Cyan.WriteConsole("\nSelect one operation:\n\n" +
 
+          " Group operations                  Student operations\n" +
+
+        " 1. Group create                     9. Student Create\n" +
+        " 2. Group delete                    10. Student delete\n" +
+        " 3. Get all Groups                  11. Get all Students\n" +
+        " 4. Get all by room groups          12. Get by ages Students\n" +
+        " 5. Get all by teacher groups       13. Get all by student group id\n" +
+        " 6. Get group by id                 14. Get all students by id\n" +
+        " 7. Search by name groups           15. Search name or surname students\n" +
+        " 8. Group Update                    16.Student Update");
+ 
+}
 
 
 

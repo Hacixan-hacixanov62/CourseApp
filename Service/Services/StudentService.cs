@@ -36,6 +36,11 @@ namespace Service.Services
             _studentRepository.Delete(student);
         }
 
+        public List<Student> GetAll()
+        {
+            return _studentRepository.GetAll();
+        }
+
         public List<Student> GetAllWithExpression()
         {
             return _studentRepository.GetAll();
@@ -75,5 +80,6 @@ namespace Service.Services
             throw new NotImplementedException();
         }
 
+  
     }
 }

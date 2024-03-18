@@ -67,6 +67,11 @@ namespace Miniproject_course_app.Controllers
             int age;
             bool isCorrectAgeFormat = int.TryParse(ageStr, out age);
 
+            if (age < 15 || age > 50)
+            {
+                ConsoleColor.Red.WriteConsole("Wrong age limit ");
+                goto age;
+            }
 
             if (isCorrectAgeFormat)
             {
@@ -104,25 +109,9 @@ namespace Miniproject_course_app.Controllers
             }
             else
             {
-
-                Console.WriteLine(" Age format is wrong ");
+                ConsoleColor.Red.WriteConsole(" Age format is wrong ");
                 goto age;
 
-            }
-
-        }
-        public void GetAll()
-        {
-
-
-            var response = _studentService.GetAllWithExpression();
-
-            foreach (var item in response)
-            {
-                string data = $"Id: {item.Id}, Student name : {item.Name}, Student surname : {item.Surname}, Student age: {item.Age}, Student" +
-                    $"Group id : {item.Group.Id} ";
-
-                Console.WriteLine(data);
             }
 
         }
@@ -154,6 +143,23 @@ namespace Miniproject_course_app.Controllers
             }
 
         }
+
+        public void GetAll()
+        {
+
+
+            var response = _studentService.GetAll();
+
+            foreach (var item in response)
+            {
+                string data = $"Id: {item.Id}, Student name : {item.Name}, Student surname : {item.Surname}, Student age: {item.Age}, Student" +
+                    $"Group id : {item.Group.Id} ";
+
+                Console.WriteLine(data);
+            }
+
+        }
+
 
         public void GetAllByAge()
         {
@@ -222,14 +228,14 @@ namespace Miniproject_course_app.Controllers
 
                     foreach (var item in response)
                     {
-                        string data = $" Id: {item.Id}, Student  name : {item.Name}, Student  teacher : {item.Surname}, Student room : {item.Age}, Student group id : {item.Group.Id}";
+                        string data = $" Id: {item.Id}, Student  name : {item.Name}, Student  surname : {item.Surname}, Student age : {item.Age}, Student group id : {item.Group.Id}";
                         Console.WriteLine(data);
                     }
 
                 }
                 catch (Exception)
                 {
-                    ConsoleColor.Red.WriteConsole(" Group id notfound ");
+                    ConsoleColor.Red.WriteConsole(" Group /*id*/ notfound ");
                     goto Id;
                 }
 
@@ -271,13 +277,11 @@ namespace Miniproject_course_app.Controllers
             }
         }
 
-    
-
         public void SearchByNameOrSurname()
         {
-        SearchByNameOrSurname: ConsoleColor.Cyan.WriteConsole("Add search text: ");
+           SearchByNameOrSurname: ConsoleColor.Cyan.WriteConsole("Add search text: ");
 
-        Name: string searchText = Console.ReadLine();
+          Name: string searchText = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(searchText))
             {
                 ConsoleColor.Red.WriteConsole("Input can't be empty ");
@@ -290,7 +294,7 @@ namespace Miniproject_course_app.Controllers
 
                 if (response.Count == 0)
                 {
-                    ConsoleColor.Red.WriteConsole(" Name notfaound ");
+                    ConsoleColor.Red.WriteConsole(" Name or Surname notfaound ");
                 }
 
                 foreach (var item in response)
@@ -310,6 +314,11 @@ namespace Miniproject_course_app.Controllers
 
 
 
-    }
+        }
+
+        public void Update()
+        {
+
+        }
     }
 }

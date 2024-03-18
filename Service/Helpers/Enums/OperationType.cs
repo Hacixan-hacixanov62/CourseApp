@@ -11,7 +11,6 @@ namespace Service.Helpers.Enums
         GroupCtreate = 1,
         GroupDelete,
         GetAllGroups,
-        GetAllWithExpressionGroups,
         GetAllByRoomGroups,
         GetAllByTeacherGroups,
         GetGroupById,
@@ -19,8 +18,8 @@ namespace Service.Helpers.Enums
         GroupUpdate,
 
         StudentCreate,
-        GetAllStudents,
         StudentDelete,
+        GetAllStudents,
         GetAllByAgeStudents,
         GetAllByGroupIdStudents,
         GetStudentById,
