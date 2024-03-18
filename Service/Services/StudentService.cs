@@ -47,9 +47,9 @@ namespace Service.Services
         }
 
 
-        public List<Student> GetAllByGroup(int group)
+        public List<Student> GetAllByGroupId(int id)
         {
-            return _studentRepository.GetAllByGroup(group);
+            return _studentRepository.GetAllByGroup(id);
         }
 
         public Student GetById(int? id)

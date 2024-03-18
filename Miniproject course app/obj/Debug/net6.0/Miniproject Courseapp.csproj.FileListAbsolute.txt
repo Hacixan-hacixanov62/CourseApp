@@ -20,3 +20,4 @@ C:\C#\Miniproject course app\Miniproject course app\obj\Debug\net6.0\refint\Mini
 C:\C#\Miniproject course app\Miniproject course app\obj\Debug\net6.0\Miniproject Courseapp.pdb
 C:\C#\Miniproject course app\Miniproject course app\obj\Debug\net6.0\Miniproject Courseapp.genruntimeconfig.cache
 C:\C#\Miniproject course app\Miniproject course app\obj\Debug\net6.0\ref\Miniproject Courseapp.dll
+C:\C#\Miniproject course app\Miniproject course app\obj\Debug\net6.0\Miniproject Courseapp.sourcelink.json

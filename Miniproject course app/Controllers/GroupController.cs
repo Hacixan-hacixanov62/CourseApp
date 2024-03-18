@@ -5,6 +5,7 @@ using Service.Helpers.Extensions;
 using Service.Services;
 using Service.Services.Interfaces;
 using System.Linq.Expressions;
+using System.Text.RegularExpressions;
 
 namespace Miniproject_course_app.Controllers
 {
@@ -41,20 +42,40 @@ namespace Miniproject_course_app.Controllers
 
             if (teacher.Length < 3)
             {
-                ConsoleColor.Red.WriteConsole("ucden azdir ");
+                ConsoleColor.Red.WriteConsole(" Name must not be less than three letters ");
                 goto Name;
             }
 
+            if (string.IsNullOrWhiteSpace(teacher))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty ");
+                goto Teacher;
+            }
+
+
+            if (!Regex.IsMatch(teacher, @"^[\p{L}\p{M}' \.\-]+$"))
+            {
+                ConsoleColor.Red.WriteConsole("Format is wrong");
+                goto Teacher;
+            }
+
+
 
             ConsoleColor.Cyan.WriteConsole("Add room: ");
-            string room = Console.ReadLine();
+           Room : string room = Console.ReadLine();
 
-           
+            if (string.IsNullOrWhiteSpace(room))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty ");
+                goto Room;
+            }
+
+
 
             try
             {
 
-                _groupService.Create(new Group { Name = name.Trim(), Teacher = teacher.Trim(), Room = room.Trim() });
+                _groupService.Create(new Domain.Models.Group { Name = name.Trim(), Teacher = teacher.Trim(), Room = room.Trim() });
 
                 ConsoleColor.Green.WriteConsole("Data successfully added");
             }
@@ -126,7 +147,7 @@ namespace Miniproject_course_app.Controllers
             {
                  
 
-                List<Group> response = _groupService.GetAllByRoom(room);
+                List<Domain.Models.Group> response = _groupService.GetAllByRoom(room);
 
                 if (response.Count ==0)
                 {
@@ -161,7 +182,7 @@ namespace Miniproject_course_app.Controllers
             try
             {
 
-                List<Group>  response = _groupService.GetAllByTeacher(teachername);
+                List<Domain.Models.Group>  response = _groupService.GetAllByTeacher(teachername);
                 if ( response.Count == 0)
                 {
                     ConsoleColor.Red.WriteConsole(" Teachername notfound ");
@@ -228,7 +249,7 @@ namespace Miniproject_course_app.Controllers
             try
             {
 
-                List<Group> response = _groupService.SearchByName(searchText);
+                List<Domain.Models.Group> response = _groupService.SearchByName(searchText);
                 if (response.Count == 0)
                 {
                     ConsoleColor.Red.WriteConsole(" Name notfaound ");

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Miniproject_course_app.Controllers
@@ -29,7 +30,7 @@ namespace Miniproject_course_app.Controllers
 
             if( _groupService.GetAll().Count == 0)
             {
-                //Console.WriteLine("salam");
+              
                 ConsoleColor.Red.WriteConsole("First Create group ");
                 return;
             }            
@@ -43,7 +44,15 @@ namespace Miniproject_course_app.Controllers
                 goto Name;
             }
 
-             ConsoleColor.Magenta.WriteConsole("Add surname: ");
+            if(!Regex.IsMatch(name, @"^[\p{L}\p{M}' \.\-]+$"))
+            { 
+                ConsoleColor.Red.WriteConsole("Format is wrong");
+                goto Name;
+            }
+
+
+
+            ConsoleColor.Magenta.WriteConsole("Add surname: ");
          Surname : string surname = Console.ReadLine();
 
             if (string.IsNullOrWhiteSpace(surname))
@@ -182,7 +191,52 @@ namespace Miniproject_course_app.Controllers
               
         }
 
+        public void GetAllByGroupId()
+        {
+            ConsoleColor.Cyan.WriteConsole("Add id: ");
+        Id: string idStr= Console.ReadLine();
+      
+            int id;
 
+            bool isCorrectIdFormat = int.TryParse(idStr, out id);
+         
+
+            if (string.IsNullOrWhiteSpace(idStr))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty ");
+                goto Id;
+            }
+            if (isCorrectIdFormat)
+            {
+                try
+                {
+
+
+
+                    List<Domain.Models.Student> response = _studentService.GetAllByGroupId(id);
+
+                    if (response.Count == 0)
+                    {
+                        ConsoleColor.Red.WriteConsole(" Id notfound ");
+                    }
+
+                    foreach (var item in response)
+                    {
+                        string data = $" Id: {item.Id}, Student  name : {item.Name}, Student  teacher : {item.Surname}, Student room : {item.Age}, Student group : {item.Group.Id}";
+                        Console.WriteLine(data);
+                    }
+
+                }
+                catch (Exception)
+                {
+                    ConsoleColor.Red.WriteConsole(" Group notfound ");
+                    goto Id;
+                }
+            
+            }
+
+           
+        }
 
 
 

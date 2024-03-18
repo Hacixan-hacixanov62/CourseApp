@@ -20,7 +20,7 @@ namespace Service.Helpers.Enums
         GetAllStudents,
         StudentDelete,
         GetAllByAgeStudents,
-        GetAllByGroupStudents,
+        GetAllByGroupIdStudents,
         GetStudentById,
         SearchByNameOrSurnameStudents,
         StudentUpdate,

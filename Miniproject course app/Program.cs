@@ -74,6 +74,9 @@ Operation: string operationStr = Console.ReadLine();
                 studentController.GetAllByAge();
                 break;
 
+            case (int)OperationType.GetAllByGroupIdStudents:
+                studentController.GetAllByGroupId();
+                break;
 
 
 
@@ -98,9 +101,9 @@ Operation: string operationStr = Console.ReadLine();
 static void GetMenues()
 {
 
-    ConsoleColor.Cyan.WriteConsole("Chose one operation  : \n 1-Group create\n 2-Group delete\n 3-Get all Groups,4-Get all by room groups, 5- Get all by teacher groups," +
+    ConsoleColor.Cyan.WriteConsole("Chose one operation :  \n 1-Group create\n 2-Group delete\n 3-Get all Groups,4-Get all by room groups, 5- Get all by teacher groups," +
         " 6-Get group by id, 7-Search by name groups, 8-Group Update, 9-Student Create, 10-Get all Students, 11-Student delete, 12-Get by" +
-        "ages Students ");
+        "ages Students, 13-Get all by group id ");
 }
 
 
