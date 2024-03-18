@@ -1,0 +1,11 @@
+C:\C#\Miniproject course app\Domain\bin\Debug\net6.0\Domain.deps.json
+C:\C#\Miniproject course app\Domain\bin\Debug\net6.0\Domain.dll
+C:\C#\Miniproject course app\Domain\bin\Debug\net6.0\Domain.pdb
+C:\C#\Miniproject course app\Domain\obj\Debug\net6.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\C#\Miniproject course app\Domain\obj\Debug\net6.0\Domain.AssemblyInfoInputs.cache
+C:\C#\Miniproject course app\Domain\obj\Debug\net6.0\Domain.AssemblyInfo.cs
+C:\C#\Miniproject course app\Domain\obj\Debug\net6.0\Domain.csproj.CoreCompileInputs.cache
+C:\C#\Miniproject course app\Domain\obj\Debug\net6.0\Domain.dll
+C:\C#\Miniproject course app\Domain\obj\Debug\net6.0\refint\Domain.dll
+C:\C#\Miniproject course app\Domain\obj\Debug\net6.0\Domain.pdb
+C:\C#\Miniproject course app\Domain\obj\Debug\net6.0\ref\Domain.dll
