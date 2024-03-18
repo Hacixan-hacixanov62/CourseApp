@@ -193,7 +193,7 @@ namespace Miniproject_course_app.Controllers
 
         public void GetAllByGroupId()
         {
-            ConsoleColor.Cyan.WriteConsole("Add id: ");
+            ConsoleColor.Cyan.WriteConsole("Add group id: ");
         Id: string idStr= Console.ReadLine();
       
             int id;
@@ -217,19 +217,19 @@ namespace Miniproject_course_app.Controllers
 
                     if (response.Count == 0)
                     {
-                        ConsoleColor.Red.WriteConsole(" Id notfound ");
+                        ConsoleColor.Red.WriteConsole(" Group Id notfound ");
                     }
 
                     foreach (var item in response)
                     {
-                        string data = $" Id: {item.Id}, Student  name : {item.Name}, Student  teacher : {item.Surname}, Student room : {item.Age}, Student group : {item.Group.Id}";
+                        string data = $" Id: {item.Id}, Student  name : {item.Name}, Student  teacher : {item.Surname}, Student room : {item.Age}, Student group id : {item.Group.Id}";
                         Console.WriteLine(data);
                     }
 
                 }
                 catch (Exception)
                 {
-                    ConsoleColor.Red.WriteConsole(" Group notfound ");
+                    ConsoleColor.Red.WriteConsole(" Group id notfound ");
                     goto Id;
                 }
             
@@ -238,9 +238,41 @@ namespace Miniproject_course_app.Controllers
            
         }
 
+        public void GetById()
+        {
+
+            ConsoleColor.Cyan.WriteConsole("Add Id: ");
+        Id: string idStr = Console.ReadLine();
+            int id;
+
+            bool isCorrectIdFormat = int.TryParse(idStr, out id);
+
+            if (string.IsNullOrWhiteSpace(idStr))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty ");
+                goto Id;
+            }
+            try
+            {
+
+                _groupService.GetById(id);
+
+                var response = _studentService.GetById(id);
+
+                string data = $"Id: {response.Id}, Student name : {response.Name}, Student surname : {response.Surname}, Group room: {response.Group.Id}";
+                Console.WriteLine(data);
 
 
 
+            }
+            catch (Exception)
+            {
+                ConsoleColor.Red.WriteConsole(" Id notfound ");
+            }
+        }
+
+       
+        
     }
 
     
