@@ -58,7 +58,7 @@ namespace Miniproject_course_app.Controllers
 
             if (name.Length < 3)
             {
-                ConsoleColor.Red.WriteConsole(" Name must not be less than three letters ");
+                ConsoleColor.Red.WriteConsole(" Name or Surname must not be less than three letters ");
                 goto Name;
             }
 
@@ -87,7 +87,7 @@ namespace Miniproject_course_app.Controllers
 
             if (surname.Length < 3)
             {
-                ConsoleColor.Red.WriteConsole(" Name must not be less than three letters ");
+                ConsoleColor.Red.WriteConsole(" Name or Surname must not be less than three letters ");
                 goto Name;
             }
 
@@ -297,7 +297,7 @@ namespace Miniproject_course_app.Controllers
             try
             {
 
-                _groupService.GetById(id);
+                _studentService.GetById(id);
 
                 var response = _studentService.GetById(id);
 

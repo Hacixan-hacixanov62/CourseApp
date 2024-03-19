@@ -2,12 +2,17 @@
 using Miniproject_course_app.Controllers;
 using Service.Helpers.Enums;
 using Service.Helpers.Extensions;
+using System.Drawing;
 
 
 
 GroupController groupController = new ();
 StudentController studentController = new  ();
 
+
+ConsoleColor.Yellow.WriteConsole("WELCOME PB-101");
+
+   
 while (true)
 {
     GetMenues();
@@ -97,7 +102,6 @@ Operation: string operationStr = Console.ReadLine();
                 goto Operation;
 
         }
-
 
     }
     else

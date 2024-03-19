@@ -80,6 +80,9 @@ namespace Service.Services
             throw new NotImplementedException();
         }
 
-  
+        public void GetAllById(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

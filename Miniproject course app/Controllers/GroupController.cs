@@ -5,6 +5,7 @@ using Service.Helpers.Extensions;
 using Service.Services;
 using Service.Services.Interfaces;
 using System.Linq.Expressions;
+using System.Text.RegularExpressions;
 
 
 namespace Miniproject_course_app.Controllers
@@ -191,7 +192,7 @@ namespace Miniproject_course_app.Controllers
                 List<Domain.Models.Group>  response = _groupService.GetAllByTeacher(teachername);
                 if ( response.Count == 0)
                 {
-                    ConsoleColor.Red.WriteConsole(" Teachername notfound ");
+                    ConsoleColor.Red.WriteConsole(" Group Teachername notfound ");
                 }
 
                 foreach (var item in response)
@@ -203,7 +204,7 @@ namespace Miniproject_course_app.Controllers
             }
             catch (Exception )
             {
-                ConsoleColor.Red.WriteConsole("Teachername notfound");
+                ConsoleColor.Red.WriteConsole(" Group Teachername notfound");
                 goto Teacher;
             }
 
@@ -212,7 +213,7 @@ namespace Miniproject_course_app.Controllers
         public void GetById()
         {
 
-            ConsoleColor.Cyan.WriteConsole("Add Id: ");
+            ConsoleColor.Cyan.WriteConsole("Add Group Id: ");
              Id : string idStr = Console.ReadLine();
                 int id;
 
@@ -255,7 +256,7 @@ namespace Miniproject_course_app.Controllers
             try
             {
 
-                List<Group> response = _groupService.SearchByName(searchText);
+                List<Domain.Models.Group> response = _groupService.SearchByName(searchText);
 
                 if (response.Count == 0)
                 {
