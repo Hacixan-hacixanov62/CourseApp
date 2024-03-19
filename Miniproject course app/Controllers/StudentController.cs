@@ -260,21 +260,33 @@ namespace Miniproject_course_app.Controllers
                     if (response.Count == 0)
                     {
                         ConsoleColor.Red.WriteConsole(" Group Id notfound ");
-                    }
+                        return;
 
-                    foreach (var item in response)
+
+                    } 
+                    else
                     {
-                        string data = $" Id: {item.Id}, Student  name : {item.Name}, Student  surname : {item.Surname}, Student age : {item.Age}, Student group id : {item.Group.Id}";
-                        Console.WriteLine(data);
+
+                        foreach (var item in response)
+                        {
+                            string data = $" Id: {item.Id}, Student  name : {item.Name}, Student  surname : {item.Surname}, Student age : {item.Age}, Student group id : {item.Group.Id}";
+                            Console.WriteLine(data);
+                        }
                     }
+                            
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    ConsoleColor.Red.WriteConsole(" Group id notfound , please corect group id ");
+                    ConsoleColor.Red.WriteConsole( ex.Message);
                     goto Id;
                 }
 
+            }
+            else
+            {
+                ConsoleColor.Red.WriteConsole(" Group id notfound , please corect group id");
+                 goto Id;   
             }
 
 
